@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import BasicCard from './components/BasicCard';
 
 
 function App() {
@@ -9,9 +10,8 @@ function App() {
   };
   return (
     <div style={btnstyle}>
-  
       <p>Hello World</p>
-      
+      <BasicCard />
     </div>
   );
 }
