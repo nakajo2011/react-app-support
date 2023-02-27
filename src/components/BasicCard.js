@@ -1,4 +1,5 @@
 import * as React from 'react';
+import  { useState } from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -8,8 +9,23 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import { minHeight } from '@mui/system';
 
+
 export default function BasicCard(props) {
   const { classes } = props;
+  const [count, setCount] = useState(0);
+  const arr =["Red", "Green", "Blue", "Black", "White"];
+  console.log(arr);
+
+
+  function handleClick(e) {
+    let newCount = count-1
+    console.log(newCount)
+    if(newCount < 0) {
+      newCount = 4
+    }
+    setCount(newCount)
+  }
+
   return (
     <Box
     xs={{ width: '60rem' }}>
@@ -28,13 +44,13 @@ export default function BasicCard(props) {
         <Card sx={{ m: 1, height: "30em"}}>
           <CardContent sx={{ height: "90%" }} id="MyCardContent">
             <Typography sx={{ fontSize: 20}} color="text.secondary" gutterBottom> 
-              Word of the Day
+              {arr[count]}
             </Typography> 
           </CardContent>
         </Card>
       </Grid>
       <Grid item  xs={4}>
-        <img src="./img/left.png" alt="my image" width="50px" />
+        <img src="./img/left.png" alt="my image" width="50px" onClick={handleClick}/>
       </Grid>
       <Grid item xs={4}>
         <img src="./img/random.png" alt="my image" width="100px" />
