@@ -74,24 +74,29 @@ export default function BasicCard(props) {
       sx={{ p: 1 }}
     >
       
-      <Grid item xs={9} sx={{mb: 10}}>
+      <Grid item xs={2} sx={{mb: 55}}>
+        <img src="./img/sea10hennkou.png" alt="my image" width="85px" />
+      </Grid>
+      <Grid item xs={8} sx={{mb: 10}}>
         <Card sx={{ m: 1, height: "30em", justifyContent: "center", alignItems: "center", display:"flex"}}>
           <CardContent id="MyCardContent" >
             <Typography sx={{ fontSize: 20}} color="text.secondary" gutterBottom> 
               {arr[count]}
             </Typography>  
-           
           </CardContent>
         </Card>
       </Grid>
+      <Grid item xs={2} sx={{mb: 60}}>
+        <img src="./img/plus.png" alt="my image" width="88px" />
+      </Grid>
       <Grid item  xs={4}>
-        <img src="./img/left.png" alt="my image" width="65px" onClick={handleClick}/>
+        <img src="./img/left.png" alt="my image" width="80px" onClick={handleClick}/>
       </Grid>
       <Grid item xs={4}>
-        <img src="./img/sh.png" alt="my image" width="150px" onClick={randomClick} />
+        <img src="./img/sh.png" alt="my image" width="160px" onClick={randomClick} />
       </Grid>
       <Grid item xs={4}>
-        <img src="./img/right.png" alt="my image" width="75px" onClick={handleRightClick}/>
+        <img src="./img/right.png" alt="my image" width="86px" onClick={handleRightClick}/>
 
       </Grid>
     </Grid>
