@@ -1,10 +1,13 @@
 // 他のモジュールから取り込む
 import * as React from 'react';
-import  { useState } from 'react';
+import  { createContext, useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 
 import CardBody from './CardBody'
+
+// Contextっていうグローバル変数みたいなものを使って本文をstring型の配列で定義
+export const BodyText = createContext()
 
 //　関数の呼び出し
 export default function BasicCard(props) {
@@ -13,9 +16,10 @@ export default function BasicCard(props) {
   // カウント定義
   const [count, setCount] = useState(0);
   // タイトル
-  const arr =["Red", "Green", "Blue", "Black", "White"];
+  const [text, setText] = useState(["新しいページ", "新しいページ2"])
+  
   // 渡された値をコンソールに表示する、どんな型でもOK
-  console.log(arr);
+  console.log(text);
 
 // 左の三角ボタンを押すと次々変わる
   function handleClick(e) {
@@ -23,18 +27,18 @@ export default function BasicCard(props) {
     let newCount = count-1
     // 値を表示
     console.log(newCount)
-    // カウントが０以下であれば４の値に戻る
+    // カウントが０以下であれば最後の記事に戻る
     if(newCount < 0) {
-      newCount = 4
+      newCount = text.length-1
     }
     // 次のステートを直接引数で受け取るインターフェイス
     setCount(newCount)
   }
 
   function randomClick(e){
-    let size = arr.length
+    let size = text.length
     var index = Math.floor(Math.random()*size)
-    while (index == count) {
+    while (index === count && size > 1) {
       index = Math.floor(Math.random()*size)
     }
     console.log(index)
@@ -47,8 +51,8 @@ export default function BasicCard(props) {
     let newCount = count+1
     // 値を表示
     console.log(newCount)
-    // カウントが4以上であれば０の値にも戻る
-    if(newCount > 4) {
+    // カウントが記事数以上であれば０の値に戻る
+    if(newCount >= text.length) {
       newCount = 0
     }
     // 次のステートを直接引数で受け取るインターフェイス
@@ -74,7 +78,9 @@ export default function BasicCard(props) {
         <img src="./img/sea10hennkou.png" alt="my image" width="85px" />
       </Grid>
       <Grid item xs={8} sx={{mb: 10}}>
-        <CardBody arr={arr} index={count}/>
+        <BodyText.Provider value={{text, setText}}>
+          <CardBody index={count}/>
+        </BodyText.Provider>
       </Grid>
       <Grid item xs={2} sx={{mb: 40}}>
         <img src="./img/plus.png" alt="my image" width="88px" />
