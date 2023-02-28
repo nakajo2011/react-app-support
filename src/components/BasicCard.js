@@ -21,7 +21,7 @@ export default function BasicCard(props) {
   // 渡された値をコンソールに表示する、どんな型でもOK
   console.log(text);
 
-// 左の三角ボタンを押すと次々変わる
+  // 左の三角ボタンを押すと次々変わる
   function handleClick(e) {
     // 押す度に前のページへ
     let newCount = count-1
@@ -45,7 +45,7 @@ export default function BasicCard(props) {
     setCount(index)
    }
 
-// 右の三角をクリックすると次のページに移る
+  // 右の三角をクリックすると次のページに移る
   function handleRightClick(e) {
     // 押す度に前のページへ
     let newCount = count+1
@@ -57,6 +57,14 @@ export default function BasicCard(props) {
     }
     // 次のステートを直接引数で受け取るインターフェイス
     setCount(newCount)
+  }
+
+  // 新しい本文を作成
+  function createNewText(e) {
+    // 一番後ろに新しいページを作成
+    setText([...text, "新しいページ"])
+    // 今作ったページを表示するようにする
+    setCount(text.length-1)
   }
 
   return (
@@ -83,7 +91,7 @@ export default function BasicCard(props) {
         </BodyText.Provider>
       </Grid>
       <Grid item xs={2} sx={{mb: 40}}>
-        <img src="./img/plus.png" alt="my image" width="88px" />
+        <img src="./img/plus.png" alt="my image" width="88px" onClick={createNewText}/>
       </Grid>
       <Grid item  xs={4}>
         <img src="./img/left.png" alt="my image" width="80px" onClick={handleClick}/>
