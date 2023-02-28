@@ -16,7 +16,7 @@ export default function BasicCard(props) {
   // カウント定義
   const [count, setCount] = useState(0);
   // タイトル
-  const [text, setText] = useState(["新しいページ", "新しいページ2"])
+  const [text, setText] = useState(["新しいページ"])
   
   // 渡された値をコンソールに表示する、どんな型でもOK
   console.log(text);
