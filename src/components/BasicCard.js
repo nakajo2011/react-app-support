@@ -82,31 +82,39 @@ export default function BasicCard(props) {
       alignItems="center"
       justifyContent="center"
       align="center"
-      
+  
       // style={{ minHeight: '100vh' }}
       sx={{ p: 1 }}
     >
       
-      <Grid item xs={2} sx={{mb: 55}}>
-        {/* <img src="./img/sea10hennkou.png" alt="my image" width="85px" /> */}
-      </Grid>
-      <Slide direction="up" in={checked} mountOnEnter unmountOnExit> 
-        <Grid item xs={8} sx={{mb: 10}}>
-          <BodyText.Provider value={{text, setText}}>
-            <CardBody index={count}/>
-          </BodyText.Provider>
+	<div class></div>
+      <Grid container direction="colum" xs={12} sx={{
+        height: "500px"
+      }}>
+        <Grid item xs={2} sx={{mb: 55}}>
+          {/* <img src="./img/sea10hennkou.png" alt="my image" width="85px" /> */}
         </Grid>
-      </Slide>
-      <Slide direction="up" in={!checked} mountOnEnter unmountOnExit> 
         <Grid item xs={8} sx={{mb: 10}}>
-          <BodyText.Provider value={{text, setText}}>
-            <CardBody index={count}/>
-          </BodyText.Provider>
+          <Slide direction="up" in={checked} mountOnEnter unmountOnExit> 
+            <Grid item xs={12} sx={{mb: 12}}>
+              <BodyText.Provider value={{text, setText}}>
+                <CardBody index={count}/>
+              </BodyText.Provider>
+            </Grid>
+          </Slide>
+          <Slide direction="up" in={!checked} mountOnEnter unmountOnExit> 
+            <Grid item xs={12} sx={{mb: 12}}>
+              <BodyText.Provider value={{text, setText}}>
+                <CardBody index={count}/>
+              </BodyText.Provider>
+            </Grid>
+          </Slide>
         </Grid>
-      </Slide>
-      <Grid item xs={2} sx={{mb: 57 }}>
-        <img src="./img/plus.png" alt="my image" width="88px" onClick={createNewText}/>
+        <Grid item xs={2} sx={{mb: 57 }}>
+          <img src="./img/plus.png" alt="my image" width="88px" onClick={createNewText}/>
+        </Grid>
       </Grid>
+      <Grid container direction="colum" xs={12}>
       <Grid item  xs={4}>
         <img src="./img/left.png" alt="my image" width="80px" onClick={handleClick}/>
       </Grid>
@@ -116,6 +124,7 @@ export default function BasicCard(props) {
       <Grid item xs={4}>
         <img src="./img/right.png" alt="my image" width="86px" onClick={handleRightClick}/>
 
+      </Grid>
       </Grid>
     </Grid>
     </Box>
