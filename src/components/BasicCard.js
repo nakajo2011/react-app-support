@@ -3,6 +3,7 @@ import * as React from 'react';
 import  { createContext, useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import { Slide } from '@mui/material';
 
 import CardBody from './CardBody'
 
@@ -15,6 +16,7 @@ export default function BasicCard(props) {
   const { classes } = props;
   // カウント定義
   const [count, setCount] = useState(0);
+  const [checked, setChecked] = React.useState(true);
   // タイトル
   const [text, setText] = useState(["新しいページ"])
   
@@ -23,6 +25,10 @@ export default function BasicCard(props) {
 
   // 左の三角ボタンを押すと次々変わる
   function handleClick(e) {
+    // TとFを反転
+    const newChecked = !checked
+    setChecked(newChecked);
+
     // 押す度に前のページへ
     let newCount = count-1
     // 値を表示
@@ -61,8 +67,11 @@ export default function BasicCard(props) {
 
   // 新しい本文を作成
   function createNewText(e) {
+    console.log(text)
+
+    const len = text.length
     // 一番後ろに新しいページを作成
-    setText([...text, "新しいページ"])
+    setText([...text, `新しいページ${len}`])
     // 今作ったページを表示するようにする
     setCount(text.length-1)
   }
@@ -85,11 +94,20 @@ export default function BasicCard(props) {
       <Grid item xs={2} sx={{mb: 55}}>
         <img src="./img/sea10hennkou.png" alt="my image" width="85px" />
       </Grid>
-      <Grid item xs={8} sx={{mb: 10}}>
-        <BodyText.Provider value={{text, setText}}>
-          <CardBody index={count}/>
-        </BodyText.Provider>
-      </Grid>
+      <Slide direction="up" in={checked} mountOnEnter unmountOnExit> 
+        <Grid item xs={8} sx={{mb: 10}}>
+          <BodyText.Provider value={{text, setText}}>
+            <CardBody index={count}/>
+          </BodyText.Provider>
+        </Grid>
+      </Slide>
+      <Slide direction="up" in={!checked} mountOnEnter unmountOnExit> 
+        <Grid item xs={8} sx={{mb: 10}}>
+          <BodyText.Provider value={{text, setText}}>
+            <CardBody index={count}/>
+          </BodyText.Provider>
+        </Grid>
+      </Slide>
       <Grid item xs={2} sx={{mb: 40}}>
         <img src="./img/plus.png" alt="my image" width="88px" onClick={createNewText}/>
       </Grid>
