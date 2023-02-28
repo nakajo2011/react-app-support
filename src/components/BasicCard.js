@@ -104,7 +104,7 @@ export default function BasicCard(props) {
           </BodyText.Provider>
         </Grid>
       </Slide>
-      <Grid item xs={2} sx={{mb: 40}}>
+      <Grid item xs={2} sx={{mb: 57 }}>
         <img src="./img/plus.png" alt="my image" width="88px" onClick={createNewText}/>
       </Grid>
       <Grid item  xs={4}>
