@@ -4,12 +4,9 @@ import  { createContext, useState } from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import { Slide } from '@mui/material';
-
 import CardBody from './CardBody'
-
 // Contextっていうグローバル変数みたいなものを使って本文をstring型の配列で定義
 export const BodyText = createContext()
-
 //　関数の呼び出し
 export default function BasicCard(props) {
   // const,letで指定。varはあまり使わない
@@ -19,16 +16,13 @@ export default function BasicCard(props) {
   const [checked, setChecked] = React.useState(true);
   // タイトル
   const [text, setText] = useState(["新しいページ"])
-  
   // 渡された値をコンソールに表示する、どんな型でもOK
   console.log(text);
-
   // 左の三角ボタンを押すと次々変わる
   function handleClick(e) {
     // TとFを反転
     const newChecked = !checked
     setChecked(newChecked);
-
     // 押す度に前のページへ
     let newCount = count-1
     // 値を表示
@@ -40,8 +34,9 @@ export default function BasicCard(props) {
     // 次のステートを直接引数で受け取るインターフェイス
     setCount(newCount)
   }
-
   function randomClick(e){
+    const newChecked = !checked
+    setChecked(newChecked);
     let size = text.length
     var index = Math.floor(Math.random()*size)
     while (index === count && size > 1) {
@@ -50,9 +45,10 @@ export default function BasicCard(props) {
     console.log(index)
     setCount(index)
    }
-
   // 右の三角をクリックすると次のページに移る
   function handleRightClick(e) {
+    const newChecked = !checked
+    setChecked(newChecked);
     // 押す度に前のページへ
     let newCount = count+1
     // 値を表示
@@ -64,11 +60,11 @@ export default function BasicCard(props) {
     // 次のステートを直接引数で受け取るインターフェイス
     setCount(newCount)
   }
-
   // 新しい本文を作成
   function createNewText(e) {
     console.log(text)
-
+    const newChecked = !checked
+    setChecked(newChecked);
     const len = text.length
     // 一番後ろに新しいページを作成
     setText([...text, `新しいページ${len}`])
@@ -92,7 +88,7 @@ export default function BasicCard(props) {
     >
       
       <Grid item xs={2} sx={{mb: 55}}>
-        <img src="./img/sea10hennkou.png" alt="my image" width="85px" />
+        {/* <img src="./img/sea10hennkou.png" alt="my image" width="85px" /> */}
       </Grid>
       <Slide direction="up" in={checked} mountOnEnter unmountOnExit> 
         <Grid item xs={8} sx={{mb: 10}}>
