@@ -2,13 +2,9 @@
 import * as React from 'react';
 import  { useState } from 'react';
 import Box from '@mui/material/Box';
-import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
-import { minHeight } from '@mui/system';
+
+import CardBody from './CardBody'
 
 //　関数の呼び出し
 export default function BasicCard(props) {
@@ -78,15 +74,9 @@ export default function BasicCard(props) {
         <img src="./img/sea10hennkou.png" alt="my image" width="85px" />
       </Grid>
       <Grid item xs={8} sx={{mb: 10}}>
-        <Card sx={{ m: 1, height: "30em", justifyContent: "center", alignItems: "center", display:"flex"}}>
-          <CardContent id="MyCardContent" >
-            <Typography sx={{ fontSize: 20}} color="text.secondary" gutterBottom> 
-              {arr[count]}
-            </Typography>  
-          </CardContent>
-        </Card>
+        <CardBody arr={arr} index={count}/>
       </Grid>
-      <Grid item xs={2} sx={{mb: 60}}>
+      <Grid item xs={2} sx={{mb: 40}}>
         <img src="./img/plus.png" alt="my image" width="88px" />
       </Grid>
       <Grid item  xs={4}>
